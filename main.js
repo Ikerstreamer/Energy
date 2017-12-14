@@ -21,7 +21,7 @@ function Story()
 	if(StoryCount==2 && power>=5)StoryCount++;
 	if(StoryCount==3 && power>=10)StoryCount++;
 	if(StoryCount==4)document.getElementById("StoryText").innerHTML="Look Around";
-	if(StoryCount==4)document.getElementById("StoryText").innerHTML="Search the Shelf";
+	if(StoryCount==5)document.getElementById("StoryText").innerHTML="Search the Shelf";
 }
 
 function UpdateWires()
