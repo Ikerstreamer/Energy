@@ -1,0 +1,11 @@
+body {
+  background: #eeeeee;
+  margin: auto;
+  text-align: center;
+  font-family: “Trebuchet MS”, Verdana, Arial, serif;
+}
+#log {
+  background: #000080;
+  text-align: left;
+  color: white;
+}
