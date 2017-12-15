@@ -1,8 +1,6 @@
 var power = 0;
 var StoryCount = 0;
 var StoryText = ["You find yourself in a  dark room with a broken electrical box...", "You open the electrical box to find disconnected wires...", "You connect one set of wires, then you wait...","The light in the room starts to flicker...","The light has sablized, u can see now!","After looking around for a while u find a shelf standing in the far corner of the room, it is dimly lit...","You find some useless scrap and spare parts, you decide to go look somewhere else...","Just before you leave you spot a battery on the top self...","You pick the battery, it looks a lot bigger now that you've gotten a better look at it..."];
-var weld = 0;
-var newWire = false;
 var wireTotal = 0;
 var wire = 0;
 
@@ -10,8 +8,8 @@ function Story()
 {
 	document.getElementById("StoryBtn").onclick=function()
 		{
-		if(StoryCount==4 || StoryCount==4){
-			if(StoryCount==4)StoryCount++;
+		if(StoryCount==4 || StoryCount==5){
+			if(StoryCount==5)StoryCount++;
 			setTimeout(function(){
 					StoryCount++;
 			},2000)
@@ -29,17 +27,10 @@ function Story()
 
 function UpdateWires()
 {
-	document.getElementById("ConnectBtn").onclick=function(){
-		if(wire<wireTotal)newWire=true;
-		}
-	if(newWire)weld+=0.05;
-	if(weld>=1)
-		{
-			newWire=false;
-			wire++;
-			weld=0;
+	document.getElementById("ConnectBtn").onclick=if(wire<wireTotal) setTimeout(function(){
+					wire++;
 			if(wire==1 && StoryCount==1)StoryCount++;
-		}
+		},3000)
 }
 
 function UpdatePower()
