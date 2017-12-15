@@ -1,6 +1,6 @@
 var power = 0;
 var StoryCount = 0;
-var StoryText = ["You find yourself in a  dark room with a broken electrical box...", "You open the electrical box to find disconnected wires...", "You connect one set of wires, then you wait...", "The light in the room starts to flicker...", "The light has sablized, u can see now!", "After looking around for a while u find a shelf standing in the far corner of the room, it is dimly lit...", "You find some useless scrap and spare parts, you decide to go look somewhere else...", "Just before you leave you spot a battery on the top self...", "You pick the battery, it looks a lot bigger now that you've gotten a better look at it..."];
+var StoryText = ["You find yourself in a  dark room with a broken electrical box...", "You open the electrical box to find disconnected wires...", "You connect one set of wires, then you wait...", "The light in the room starts to flicker...", "The light has sablized, u can see now!", "After looking around for a while u find a shelf standing in the far corner of the room, it is dimly lit...", "You find some useless scrap and spare parts, you decide to go look somewhere else...", "Just before you leave you spot a battery on the top self...", "You pick the battery, it looks a lot bigger now that you've gotten a better look at it...","The room has a heavy metal door, you hope it will lead you home...","The door doesn't budge however u see cables running to what looks like mag locks...","You follow the cable to find a power box, could probably hook up the battery...","You need to power the battery first, you might be able to connect it to one of those wires..."];
 var wireTotal = 0;
 var wire = 0;
 
@@ -11,7 +11,18 @@ function Story() {
             setTimeout(function () {
                 StoryCount++;
             }, 2000)
-        } else StoryCount++;
+        } else if(StoryCount==7){
+            StoryCount++;
+                  setTimeout(function () {
+                StoryCount++;
+            }, 2000)
+                  }else if(StoryCount == 8){
+                           for(i=0;i<2;i++){
+                             setTimeout(function(){
+                             StoryCount++;
+                             },3000)  
+                            }
+                           }else StoryCount++;
         if (StoryCount == 1) wireTotal = 4;
     }
 
@@ -20,6 +31,7 @@ function Story() {
     if (StoryCount == 4) document.getElementById("StoryText").innerHTML = "Look Around";
     if (StoryCount == 5) document.getElementById("StoryText").innerHTML = "Search the Shelf";
     if (StoryCount == 7) document.getElementById("StoryText").innerHTML = "Grab the Battery";
+    if (StoryCount == 8) document.getElementById("StoryText").innerHTML = "Investigate Door";
     document.getElementById("StoryLog").innerHTML = StoryText[StoryCount];
 }
 
