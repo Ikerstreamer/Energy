@@ -31,7 +31,7 @@ function Story() {
     if (StoryCount == 4) document.getElementById("StoryText").innerHTML = "Look Around";
     if (StoryCount == 5) document.getElementById("StoryText").innerHTML = "Search the Shelf";
     if (StoryCount == 7) document.getElementById("StoryText").innerHTML = "Grab the Battery";
-    if (StoryCount == 8) document.getElementById("StoryText").innerHTML = "Investigate Door";
+    if (StoryCount == 9) document.getElementById("StoryText").innerHTML = "Investigate Door";
     document.getElementById("StoryLog").innerHTML = StoryText[StoryCount];
 }
 
