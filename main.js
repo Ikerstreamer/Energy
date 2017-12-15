@@ -27,8 +27,8 @@ function Story()
 
 function UpdateWires()
 {
-	if(wire<wireTotal) document.getElementById("ConnectBtn").onclick=setTimeout(function(){
-	wire++;
+	document.getElementById("ConnectBtn").onclick=setTimeout(function(){
+	if(wire<wireTotal) wire++;
 	if(wire==1 && StoryCount==1)StoryCount++;
 		},3000)
 }
