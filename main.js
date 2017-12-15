@@ -27,13 +27,10 @@ function Story()
 
 function UpdateWires()
 {
-	document.getElementById("ConnectBtn").onclick=if(wire<wireTotal) 
-	{
-	setTimeout(function(){
-					wire++;
-			if(wire==1 && StoryCount==1)StoryCount++;
+	if(wire<wireTotal) document.getElementById("ConnectBtn").onclick=setTimeout(function(){
+	wire++;
+	if(wire==1 && StoryCount==1)StoryCount++;
 		},3000)
-	}
 }
 
 function UpdatePower()
