@@ -60,6 +60,8 @@ window.setInterval(function () {
         document.getElementById("wireDisplay").style.display = "none";
         document.getElementById("ConnectBtn").style.display = "none";
     } else {
+        if(StoryCount==11) document.getElementById("BatteryBtn").style.display = "inline";
+        else document.getElementById("BatteryBtn").style.display = "none";
         document.getElementById("wireDisplay").style.display = "block";
         document.getElementById("ConnectBtn").style.display = "inline";
         if (StoryCount < 4) document.getElementById("StoryBtn").style.display = "none"; else document.getElementById("StoryBtn").style.display = "inline";
