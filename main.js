@@ -1,8 +1,13 @@
 var power = 0;
 var StoryCount = 0;
 var StoryText = ["You find yourself in a  dark room with a broken electrical box...", "You open the electrical box to find disconnected wires...", "You connect one set of wires, then you wait...", "The light in the room starts to flicker...", "The light has sablized, u can see now!", "After looking around for a while u find a shelf standing in the far corner of the room, it is dimly lit...", "You find some useless scrap and spare parts, you decide to go look somewhere else...", "Just before you leave you spot a battery on the top self...", "You pick the battery, it looks a lot bigger now that you've gotten a better look at it...","The room has a heavy metal door, you hope it will lead you home...","The door doesn't budge however u see cables running to what looks like mag locks...","You follow the cable to find a power box, could probably hook up the battery...","You need to power the battery first, you might be able to connect it to one of those wires..."];
-var wireTotal = 0;
-var wire = 0;
+var wire :{cap: 0, amnt: 0};
+var Battery : {total:0,charging:0, object:[]};
+function Battery(){
+    this.capacity = 10;
+    this.power = 0;
+    this.charge = false;
+}
 
 function Story() {
     document.getElementById("StoryBtn").onclick = function () {
@@ -17,13 +22,15 @@ function Story() {
                 StoryCount++;
             }, 2000)
                   }else if(StoryCount == 8){
+                      Battery.object[0] = new Battery();
+                      Battery.total++;
                            for(i=0;i<2;i++){
                              setTimeout(function(){
                              StoryCount++;
                              },3000)  
                             }
                            }else StoryCount++;
-        if (StoryCount == 1) wireTotal = 4;
+        if (StoryCount == 1) wire.cap = 4;
     }
 
     if (StoryCount == 2 && power >= 5) StoryCount++;
@@ -37,7 +44,6 @@ function Story() {
 }
 
 function UpdateWires() {
-
     document.getElementById("ConnectBtn").onclick = function () {
         if (wire < wireTotal) setTimeout(function () {
             wire++;
@@ -45,10 +51,16 @@ function UpdateWires() {
         }, 3000)
     }
 }
-
+function UpdateBattery(){
+    document.getElementById("ConnectBtn").onclick = function () {
+        if (wire < wireTotal) setTimeout(function () {
+            wire++;
+            if (wire == 1 && StoryCount == 1) StoryCount++;
+        }, 3000)
+}
 function UpdatePower() {
     if (power < 25) {
-        power += wire / 10;
+        power += (wire.amnt-Battery.charging) / 10;
     }
     if (power > 0) {
         power -= 0.01;
@@ -66,7 +78,7 @@ window.setInterval(function () {
         document.getElementById("ConnectBtn").style.display = "inline";
         if (StoryCount < 4) document.getElementById("StoryBtn").style.display = "none"; else document.getElementById("StoryBtn").style.display = "inline";
     }
-    document.getElementById("wireCount").innerHTML = wire + "/" + wireTotal;
+    document.getElementById("wireCount").innerHTML = wire.amnt + "/" + wire.cap;
     Story();
     UpdatePower();
     UpdateWires();
