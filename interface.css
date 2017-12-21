@@ -9,3 +9,15 @@ body {
   text-align: left;
   color: white;
 }
+
+.progress {
+	background: #D3D3D3;
+	margin: 10;
+	width:100%;
+}
+
+.bar{
+	background: green;
+	width: 10%;
+	height: 30px;
+}
