@@ -47,7 +47,7 @@ function UpdateWires() {
     document.getElementById("ConnectBtn").onclick = function () {
 			if (wire.amnt < wire.cap) setTimeout(function () {
             wire.amnt++;
-            if (wire == 1 && StoryCount == 1) StoryCount++;
+            if (wire.amnt == 1 && StoryCount == 1) StoryCount++;
         }, 3000);
     }
 }
