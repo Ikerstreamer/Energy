@@ -71,6 +71,7 @@ window.setInterval(function () {
     if (StoryCount === 0) {
         document.getElementById("wireDisplay").style.display = "none";
         document.getElementById("ConnectBtn").style.display = "none";
+        document.getElementById("BatteryBtn").style.display = "none";
     } else {
         if(StoryCount==11) document.getElementById("BatteryBtn").style.display = "inline";
         else document.getElementById("BatteryBtn").style.display = "none";
