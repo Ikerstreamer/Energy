@@ -4,12 +4,23 @@ body {
   text-align: center;
   font-family: “Trebuchet MS”, Verdana, Arial, serif;
 }
-#log {
-  background: #000080;
-  text-align: left;
-  color: white;
+.log {
+    background: #000080;
+    text-align: left;
+    width: 50%;
+    color: white;
+    float:left;
+    height: 50px;
+    line-height:10px;
 }
 
+.items {
+    float: right;
+    width: 50%;
+    text-align: center;
+    line-height: 10px;
+    height: 50px;
+}
 .progress {
 	background: #D3D3D3;
 	margin: 10;
@@ -18,6 +29,6 @@ body {
 
 .bar{
 	background: green;
-	width: 10%;
+	width: 0%;
 	height: 30px;
 }
