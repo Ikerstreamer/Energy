@@ -32,6 +32,7 @@ function Story() {
     if (StoryCount == 5) document.getElementById("StoryText").innerHTML = "Search the Shelf";
     if (StoryCount == 7) document.getElementById("StoryText").innerHTML = "Grab the Battery";
     if (StoryCount == 9) document.getElementById("StoryText").innerHTML = "Investigate Door";
+    if (StoryCount == 10) document.getElementById("StoryText").innerHTML = "Follow Cables";
     document.getElementById("StoryLog").innerHTML = StoryText[StoryCount];
 }
 
