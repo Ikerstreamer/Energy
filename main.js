@@ -1,7 +1,7 @@
 var power = 0;
 var act = false;
 var StoryCount = 0;
-var StoryText = ["You find yourself in a  dark room with a broken electrical box...", "You open the electrical box to find disconnected wires...", "You connect one set of wires, then you wait...", "The light in the room starts to flicker...", "The light has sablized, u can see now!", "After looking around for a while u find a shelf standing in the far corner of the room, it is dimly lit...", "You find some useless scrap and spare parts, you decide to go look somewhere else...", "Just before you leave you spot a battery on the top self...", "You pick the battery, it looks a lot bigger now that you've gotten a better look at it...","The room has a heavy metal door, you hope it will lead you home...","The door doesn't budge however u see cables running to what looks like mag locks...","You follow the cable to find a power box, could probably hook up the battery...","You need to power the battery first, you might be able to connect it to one of those wires..."];
+var StoryText = ["You find yourself in a  dark room with a broken electrical box...", "You open the electrical box to find disconnected wires...", "You connect one set of wires, then you wait...", "The light in the room starts to flicker...", "The light has sablized, u can see now!", "After looking around for a while u find a shelf standing in the far corner of the room, it is dimly lit...", "You find some useless scrap and spare parts, you decide to go look somewhere else...", "Just before you leave you spot a battery on the top self...", "You pick up the battery, it looks a lot bigger now that you've gotten a better look at it...","The room has a heavy metal door, you hope it will lead you home...","The door doesn't budge however u see cables running to what looks like mag locks...","You follow the cable to find a power box, you could probably hook up the battery...","You need to power the battery first, you might be able to connect it to one of those wires..."];
 var wire = {cap: 0, amnt: 0};
 var Battery = {total:0,charging:0, object:[]};
 function BatteryObject(){
@@ -13,9 +13,8 @@ function BatteryObject(){
 function Story() {
     document.getElementById("StoryBtn").onclick = function () {
         if (!act) {
-            act = true;
-                
-            if (StoryCount == 5 || StoryCount == 8) StoryCount++;
+            act = true;    
+            if (StoryCount == 5) StoryCount++;
                 ProgressBar(2000);
                 setTimeout(function () {
                     StoryCount++;
@@ -50,14 +49,27 @@ function UpdateWires() {
             }, 3000);
         }
     }
+    document.getElementById("wireCount").innerHTML = wire.amnt + "/" + wire.cap;
 }
 function UpdateBattery(){
-    document.getElementById("ConnectBtn").onclick = function () {
-        if (wire < wireTotal) setTimeout(function () {
-            wire++;
-            if (wire == 1 && StoryCount == 1) StoryCount++;
-        }, 3000);
-}
+    document.getElementById("BatteryBtn").onclick = function () {
+        var chosen = 0;
+        for (i = 0; i < Battery.object.length; i++)
+        {
+            if (Battery.object[i].charge == false) {
+                 chosen = Battery.object[i];
+                break;
+            }
+        }
+        if (wire.amnt > Battery.charging && chosen!=0) {
+            chosen.charge = true;
+        }
+    }
+    Battery.charging = 0;
+    for (i = 0; i < Battery.object.length; i++) {
+        if (Battery.object[i].charge==true)Battery.charging++;
+    }
+    document.getElementById("batteryCount").innerHTML = Battery.total;
 }
 function UpdatePower() {
     if (power < 25) {
@@ -70,20 +82,27 @@ function UpdatePower() {
 
 window.setInterval(function () {
        if (StoryCount === 0) {
-        document.getElementById("wireDisplay").style.display = "none";
+           document.getElementById("wireDisplay").style.display = "none";
+           document.getElementById("batteryDisplay").style.display = "none";
         document.getElementById("ConnectBtn").style.display = "none";
         document.getElementById("BatteryBtn").style.display = "none";
     } else {
-        if(StoryCount>10) document.getElementById("BatteryBtn").style.display = "inline";
-        else document.getElementById("BatteryBtn").style.display = "none";
+           if (StoryCount > 10) {
+               document.getElementById("BatteryBtn").style.display = "inline";
+               document.getElementById("batteryDisplay").style.display = "block";
+           }
+           else document.getElementById("BatteryBtn").style.display = "none";
         document.getElementById("wireDisplay").style.display = "block";
         document.getElementById("ConnectBtn").style.display = "inline";
-        if (StoryCount < 4) document.getElementById("StoryBtn").style.display = "none"; else document.getElementById("StoryBtn").style.display = "inline";
+        if (StoryCount < 4) document.getElementById("StoryBtn").style.display = "none";
+        else document.getElementById("StoryBtn").style.display = "inline";
+        if (StoryCount == 11) document.getElementById("StoryBtn").style.display = "none";
     }
-    document.getElementById("wireCount").innerHTML = wire.amnt + "/" + wire.cap;
+    
     Story();
     UpdatePower();
     UpdateWires();
+    UpdateBattery();
 }, 50)
 
 function ProgressBar(time) {
